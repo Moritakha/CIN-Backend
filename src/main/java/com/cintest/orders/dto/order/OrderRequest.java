@@ -1,56 +1,22 @@
 package com.cintest.orders.dto.order;
-import com.cintest.orders.model.Order;
 
+import com.cintest.orders.model.Order;
+import com.cintest.orders.model.Product;
+import lombok.Data;
+
+@Data
 public class OrderRequest {
     private int units;
-
     private int bonus;
-
     private int promo;
+    private String productId;
 
-    private int totalPrice;
-
-    public OrderRequest() {
-    }
-
-    public int getUnits() {
-        return units;
-    }
-
-    public void setUnits(int units) {
-        this.units = units;
-    }
-
-    public int getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(int bonus) {
-        this.bonus = bonus;
-    }
-
-    public int getPromo() {
-        return promo;
-    }
-
-    public void setPromo(int promo) {
-        this.promo = promo;
-    }
-
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public Order toEntity() {
+    public Order toEntity(Product product) {
         Order order = new Order();
         order.setUnits(units);
         order.setBonus(bonus);
         order.setPromo(promo);
-        order.setTotalPrice(totalPrice);
+        order.setProduct(product);
         return order;
     }
 }

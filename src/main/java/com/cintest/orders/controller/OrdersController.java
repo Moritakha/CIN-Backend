@@ -10,13 +10,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("orders")
+@CrossOrigin(origins = "http://localhost:5173")
 public class OrdersController {
 
-    @Autowired
     private IOrderService orderService;
 
+    @Autowired
+    public OrdersController(IOrderService orderService) {
+        this.orderService = orderService;
+    }
+
     @GetMapping()
-    public ResponseEntity<List<Order>> getAllProducts() {
+    public ResponseEntity<List<Order>> getAllOrders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
@@ -28,5 +33,10 @@ public class OrdersController {
     @PostMapping()
     public ResponseEntity<Order> createOrder(@RequestBody OrderRequest orderRequest) {
         return ResponseEntity.ok(orderService.createOrder(orderRequest));
+    }
+
+    @PutMapping("/{orderId}")
+    public ResponseEntity<Order> updateOrder(@PathVariable int orderId, @RequestBody OrderRequest orderRequest) {
+        return ResponseEntity.ok(orderService.updateOrder(orderId, orderRequest));
     }
 }

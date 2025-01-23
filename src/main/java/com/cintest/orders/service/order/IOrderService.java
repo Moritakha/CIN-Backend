@@ -9,4 +9,5 @@ public interface IOrderService {
     List<Order> getAllOrders();
     Order getOrderById(int orderId);
     Order createOrder(OrderRequest orderRequest);
+    Order updateOrder(int orderId, OrderRequest orderRequest);
 }
